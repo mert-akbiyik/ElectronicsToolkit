@@ -1,0 +1,508 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    x:Class="PCBToolkit.Views.ThtResistorPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Shell.NavBarIsVisible="False"
+    BackgroundColor="#0B0F14">
+
+    <!-- EN: Main page layout -->
+    <!-- TR: Ana sayfa düzeni -->
+    <Grid RowDefinitions="100,*">
+
+        <!-- EN: Fixed header -->
+        <!-- TR: Sabit başlık alanı -->
+        <Grid
+            Grid.Row="0"
+            HeightRequest="100"
+            Padding="20,12"
+            ColumnDefinitions="*,Auto"
+            BackgroundColor="#0B0F14">
+
+            <VerticalStackLayout
+                Grid.Column="0"
+                Margin="0,0,15,0"
+                Spacing="3"
+                HorizontalOptions="End"
+                VerticalOptions="Center">
+
+                <Label
+                    Text="THT Direnç Renk Kodu"
+                    TextColor="White"
+                    FontSize="24"
+                    FontAttributes="Bold"
+                    HorizontalTextAlignment="End" />
+
+                <Label
+                    Text="4 / 5 / 6 bant direnç hesaplama"
+                    TextColor="#FF8A3D"
+                    FontSize="13"
+                    HorizontalTextAlignment="End" />
+
+            </VerticalStackLayout>
+
+            <Border
+                Grid.Column="1"
+                WidthRequest="44"
+                HeightRequest="44"
+                BackgroundColor="#B5101820"
+                Stroke="#FF8A3D"
+                StrokeThickness="2"
+                StrokeShape="RoundRectangle 14"
+                HorizontalOptions="End"
+                VerticalOptions="Center">
+
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Tapped="OnBackTapped" />
+                </Border.GestureRecognizers>
+
+                <Grid
+                    WidthRequest="44"
+                    HeightRequest="44"
+                    InputTransparent="True">
+
+                    <Path
+                        Data="M 8,9 L 15,16 L 8,23"
+                        Stroke="#FF8A3D"
+                        StrokeThickness="3"
+                        StrokeLineCap="Round"
+                        StrokeLineJoin="Round"
+                        WidthRequest="23"
+                        HeightRequest="32"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        InputTransparent="True" />
+
+                </Grid>
+
+            </Border>
+
+        </Grid>
+
+        <!-- EN: Scrollable responsive content -->
+        <!-- TR: Kaydırılabilir responsive içerik -->
+        <ScrollView
+            Grid.Row="1"
+            VerticalScrollBarVisibility="Never">
+
+            <VerticalStackLayout
+                Padding="20,10,20,30"
+                Spacing="18"
+                MaximumWidthRequest="720"
+                HorizontalOptions="Fill">
+
+                <!-- EN: Responsive resistor preview -->
+                <!-- TR: Responsive direnç önizleme alanı -->
+                <Border
+                    Padding="12,8"
+                    BackgroundColor="#101820"
+                    Stroke="#49301F"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 14"
+                    HorizontalOptions="Fill">
+
+                    <Grid
+                        HeightRequest="135"
+                        HorizontalOptions="Fill">
+
+                        <!-- EN: The image and bands always share the same responsive container -->
+                        <!-- TR: Görsel ve bantlar her zaman aynı responsive kapsayıcıyı paylaşır -->
+                        <Grid
+                            x:Name="ResistorVisualContainer"
+                            MaximumWidthRequest="650"
+                            HorizontalOptions="Fill"
+                            VerticalOptions="Center">
+
+                            <Image
+                                x:Name="ResistorImage"
+                                Source="tht_resistor.png"
+                                Aspect="AspectFit"
+                                HorizontalOptions="Fill"
+                                VerticalOptions="Center" />
+
+                            <!-- EN: Four-band resistor layout -->
+                            <!-- TR: Dört bant direnç yerleşimi -->
+                            <Grid
+                                x:Name="FourBandVisual"
+                                IsVisible="True"
+                                HeightRequest="46"
+                                TranslationY="-1"
+                                ColumnDefinitions="8,11,8,24,8,32,8"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center">
+
+                                <BoxView
+                                    x:Name="FourBand1"
+                                    Grid.Column="0"
+                                    WidthRequest="8"
+                                    HeightRequest="46"
+                                    Color="Transparent"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center" />
+
+                                <BoxView
+                                    x:Name="FourBand2"
+                                    Grid.Column="2"
+                                    WidthRequest="8"
+                                    HeightRequest="42"
+                                    Color="Transparent"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center" />
+
+                                <BoxView
+                                    x:Name="FourMultiplierBand"
+                                    Grid.Column="4"
+                                    WidthRequest="8"
+                                    HeightRequest="42"
+                                    Color="Transparent"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center" />
+
+                                <BoxView
+                                    x:Name="FourToleranceBand"
+                                    Grid.Column="6"
+                                    WidthRequest="8"
+                                    HeightRequest="46"
+                                    Color="Transparent"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center" />
+
+                            </Grid>
+
+                            <!-- EN: Five-band resistor layout -->
+                            <!-- TR: Beş bant direnç yerleşimi -->
+                            <Grid
+                                x:Name="FiveBandVisual"
+                                IsVisible="False"
+                                HeightRequest="46"
+                                TranslationY="-1"
+                                ColumnDefinitions="8,10,8,10,8,22,8,30,8"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center">
+
+                                <BoxView
+                                    x:Name="FiveBand1"
+                                    Grid.Column="0"
+                                    WidthRequest="8"
+                                    HeightRequest="46"
+                                    Color="Transparent"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center" />
+
+                                <BoxView
+                                    x:Name="FiveBand2"
+                                    Grid.Column="2"
+                                    WidthRequest="8"
+                                    HeightRequest="42"
+                                    Color="Transparent"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center" />
+
+                                <BoxView
+                                    x:Name="FiveBand3"
+                                    Grid.Column="4"
+                                    WidthRequest="8"
+                                    HeightRequest="42"
+                                    Color="Transparent"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center" />
+
+                                <BoxView
+                                    x:Name="FiveMultiplierBand"
+                                    Grid.Column="6"
+                                    WidthRequest="8"
+                                    HeightRequest="42"
+                                    Color="Transparent"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center" />
+
+                                <BoxView
+                                    x:Name="FiveToleranceBand"
+                                    Grid.Column="8"
+                                    WidthRequest="8"
+                                    HeightRequest="46"
+                                    Color="Transparent"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center" />
+
+                            </Grid>
+
+                            <!-- EN: Six-band resistor layout -->
+                            <!-- TR: Altı bant direnç yerleşimi -->
+                            <Grid
+                                x:Name="SixBandVisual"
+                                IsVisible="False"
+                                HeightRequest="46"
+                                TranslationY="-1"
+                                ColumnDefinitions="8,8,8,8,8,16,8,20,8,14,8"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center">
+
+                                <BoxView
+                                    x:Name="SixBand1"
+                                    Grid.Column="0"
+                                    WidthRequest="8"
+                                    HeightRequest="46"
+                                    Color="Transparent"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center" />
+
+                                <BoxView
+                                    x:Name="SixBand2"
+                                    Grid.Column="2"
+                                    WidthRequest="8"
+                                    HeightRequest="42"
+                                    Color="Transparent"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center" />
+
+                                <BoxView
+                                    x:Name="SixBand3"
+                                    Grid.Column="4"
+                                    WidthRequest="8"
+                                    HeightRequest="42"
+                                    Color="Transparent"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center" />
+
+                                <BoxView
+                                    x:Name="SixMultiplierBand"
+                                    Grid.Column="6"
+                                    WidthRequest="8"
+                                    HeightRequest="42"
+                                    Color="Transparent"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center" />
+
+                                <BoxView
+                                    x:Name="SixToleranceBand"
+                                    Grid.Column="8"
+                                    WidthRequest="8"
+                                    HeightRequest="42"
+                                    Color="Transparent"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center" />
+
+                                <BoxView
+                                    x:Name="SixTcrBand"
+                                    Grid.Column="10"
+                                    WidthRequest="8"
+                                    HeightRequest="46"
+                                    Color="Transparent"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center" />
+
+                            </Grid>
+
+                        </Grid>
+
+                    </Grid>
+
+                </Border>
+
+                <!-- EN: Band count selection -->
+                <!-- TR: Bant sayısı seçimi -->
+                <Border
+                    Padding="16"
+                    BackgroundColor="#101820"
+                    Stroke="#49301F"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 14">
+
+                    <VerticalStackLayout Spacing="10">
+
+                        <Label
+                            Text="Bant Sayısı"
+                            TextColor="#AAB6C0"
+                            FontSize="13" />
+
+                        <Grid
+                            ColumnDefinitions="*,*,*"
+                            ColumnSpacing="8">
+
+                            <Button
+                                x:Name="FourBandButton"
+                                Grid.Column="0"
+                                Text="4 Bant"
+                                HeightRequest="48"
+                                BackgroundColor="#FF8A3D"
+                                TextColor="White"
+                                FontAttributes="Bold"
+                                CornerRadius="10"
+                                Clicked="OnFourBandClicked" />
+
+                            <Button
+                                x:Name="FiveBandButton"
+                                Grid.Column="1"
+                                Text="5 Bant"
+                                HeightRequest="48"
+                                BackgroundColor="#18232C"
+                                TextColor="#AAB6C0"
+                                FontAttributes="Bold"
+                                CornerRadius="10"
+                                Clicked="OnFiveBandClicked" />
+
+                            <Button
+                                x:Name="SixBandButton"
+                                Grid.Column="2"
+                                Text="6 Bant"
+                                HeightRequest="48"
+                                BackgroundColor="#18232C"
+                                TextColor="#AAB6C0"
+                                FontAttributes="Bold"
+                                CornerRadius="10"
+                                Clicked="OnSixBandClicked" />
+
+                        </Grid>
+
+                    </VerticalStackLayout>
+
+                </Border>
+
+                <!-- EN: Resistor color band selection -->
+                <!-- TR: Direnç renk bantları seçimi -->
+                <Border
+                    Padding="16"
+                    BackgroundColor="#101820"
+                    Stroke="#49301F"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 14">
+
+                    <VerticalStackLayout Spacing="12">
+
+                        <Label
+                            Text="Renk Bantları"
+                            TextColor="White"
+                            FontSize="16"
+                            FontAttributes="Bold" />
+
+                        <Picker
+                            x:Name="Band1Picker"
+                            Title="1. Bant"
+                            TextColor="White"
+                            BackgroundColor="#0B0F14"
+                            SelectedIndexChanged="OnBandSelectionChanged" />
+
+                        <Picker
+                            x:Name="Band2Picker"
+                            Title="2. Bant"
+                            TextColor="White"
+                            BackgroundColor="#0B0F14"
+                            SelectedIndexChanged="OnBandSelectionChanged" />
+
+                        <Picker
+                            x:Name="Band3Picker"
+                            Title="3. Bant"
+                            TextColor="White"
+                            BackgroundColor="#0B0F14"
+                            IsVisible="False"
+                            SelectedIndexChanged="OnBandSelectionChanged" />
+
+                        <Picker
+                            x:Name="MultiplierPicker"
+                            Title="Çarpan"
+                            TextColor="White"
+                            BackgroundColor="#0B0F14"
+                            SelectedIndexChanged="OnBandSelectionChanged" />
+
+                        <Picker
+                            x:Name="TolerancePicker"
+                            Title="Tolerans"
+                            TextColor="White"
+                            BackgroundColor="#0B0F14"
+                            SelectedIndexChanged="OnBandSelectionChanged" />
+
+                        <Picker
+                            x:Name="TcrPicker"
+                            Title="Sıcaklık Katsayısı (TCR)"
+                            TextColor="White"
+                            BackgroundColor="#0B0F14"
+                            IsVisible="False"
+                            SelectedIndexChanged="OnBandSelectionChanged" />
+
+                    </VerticalStackLayout>
+
+                </Border>
+
+                <!-- EN: Calculation actions -->
+                <!-- TR: Hesaplama işlemleri -->
+                <Grid
+                    ColumnDefinitions="*,*"
+                    ColumnSpacing="10">
+
+                    <Button
+                        x:Name="CalculateButton"
+                        Grid.Column="0"
+                        Text="HESAPLA"
+                        HeightRequest="52"
+                        BackgroundColor="#FF8A3D"
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        CornerRadius="12"
+                        Clicked="OnCalculateClicked" />
+
+                    <Button
+                        x:Name="ClearButton"
+                        Grid.Column="1"
+                        Text="TEMİZLE"
+                        HeightRequest="52"
+                        BackgroundColor="#101820"
+                        TextColor="#AAB6C0"
+                        BorderColor="#49301F"
+                        BorderWidth="1"
+                        FontAttributes="Bold"
+                        CornerRadius="12"
+                        Clicked="OnClearClicked" />
+
+                </Grid>
+
+                <!-- EN: Calculation result -->
+                <!-- TR: Hesaplama sonucu -->
+                <Border
+                    x:Name="ResultCard"
+                    Padding="18"
+                    BackgroundColor="#101820"
+                    Stroke="#49301F"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 14">
+
+                    <VerticalStackLayout Spacing="8">
+
+                        <Label
+                            Text="Sonuç"
+                            TextColor="#7F8C96"
+                            FontSize="12" />
+
+                        <Label
+                            x:Name="ResistanceResultLabel"
+                            Text="—"
+                            TextColor="#FF8A3D"
+                            FontSize="26"
+                            FontAttributes="Bold" />
+
+                        <Label
+                            x:Name="ToleranceResultLabel"
+                            Text="Tolerans: —"
+                            TextColor="White"
+                            FontSize="14" />
+
+                        <Label
+                            x:Name="TcrResultLabel"
+                            Text="TCR: —"
+                            TextColor="White"
+                            FontSize="14"
+                            IsVisible="False" />
+
+                    </VerticalStackLayout>
+
+                </Border>
+
+            </VerticalStackLayout>
+
+        </ScrollView>
+
+    </Grid>
+
+</ContentPage>

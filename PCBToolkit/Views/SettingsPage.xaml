@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    x:Class="PCBToolkit.Views.SettingsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Shell.NavBarIsVisible="False"
+    BackgroundColor="#0B0F14">
+
+    <ScrollView>
+
+        <VerticalStackLayout
+            Padding="20,25,20,35"
+            Spacing="18">
+
+            <!-- EN: Header -->
+            <!-- TR: Başlık -->
+            <Grid ColumnDefinitions="Auto,*">
+
+                <Label
+                    Text="‹"
+                    TextColor="#4DB8FF"
+                    FontSize="34"
+                    VerticalOptions="Center">
+
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnBackTapped" />
+                    </Label.GestureRecognizers>
+
+                </Label>
+
+                <VerticalStackLayout
+                    Grid.Column="1"
+                    Margin="15,0,0,0"
+                    Spacing="2">
+
+                    <Label
+                        Text="Ayarlar"
+                        TextColor="White"
+                        FontSize="24"
+                        FontAttributes="Bold" />
+
+                    <Label
+                        Text="PCB Toolkit tercihleri"
+                        TextColor="#71808E"
+                        FontSize="12" />
+
+                </VerticalStackLayout>
+
+            </Grid>
+
+            <!-- EN: Interaction settings -->
+            <!-- TR: Etkileşim ayarları -->
+            <Border
+                BackgroundColor="#101820"
+                Stroke="#24313C"
+                StrokeThickness="1"
+                Padding="18">
+
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="14" />
+                </Border.StrokeShape>
+
+                <Grid ColumnDefinitions="*,Auto">
+
+                    <VerticalStackLayout Spacing="3">
+
+                        <Label
+                            Text="Titreşim"
+                            TextColor="White"
+                            FontAttributes="Bold" />
+
+                        <Label
+                            Text="Etkileşimlerde hafif dokunsal geri bildirim"
+                            TextColor="#8A929A"
+                            FontSize="12" />
+
+                    </VerticalStackLayout>
+
+                    <Switch
+                        x:Name="HapticSwitch"
+                        Grid.Column="1"
+                        VerticalOptions="Center"
+                        Toggled="OnHapticToggled" />
+
+                </Grid>
+
+            </Border>
+
+            <!-- EN: Number format settings -->
+            <!-- TR: Sayı formatı ayarları -->
+            <Border
+                BackgroundColor="#101820"
+                Stroke="#24313C"
+                StrokeThickness="1"
+                Padding="18">
+
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="14" />
+                </Border.StrokeShape>
+
+                <VerticalStackLayout Spacing="12">
+
+                    <Label
+                        Text="Sayı Formatı"
+                        TextColor="#4DB8FF"
+                        FontSize="17"
+                        FontAttributes="Bold" />
+
+                    <Label
+                        Text="Ondalık ayırıcı"
+                        TextColor="White"
+                        FontAttributes="Bold" />
+
+                    <Picker
+                        x:Name="DecimalPicker"
+                        BackgroundColor="#0B0F14"
+                        TextColor="White"
+                        SelectedIndexChanged="OnDecimalChanged">
+
+                        <Picker.Items>
+                            <x:String>Virgül (4,7)</x:String>
+                            <x:String>Nokta (4.7)</x:String>
+                        </Picker.Items>
+
+                    </Picker>
+
+                </VerticalStackLayout>
+
+            </Border>
+
+            <!-- EN: About -->
+            <!-- TR: Hakkında -->
+            <Border
+                BackgroundColor="#101820"
+                Stroke="#24313C"
+                StrokeThickness="1"
+                Padding="18">
+
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="14" />
+                </Border.StrokeShape>
+
+                <VerticalStackLayout Spacing="10">
+
+                    <Label
+                        Text="Hakkında"
+                        TextColor="#4DB8FF"
+                        FontSize="17"
+                        FontAttributes="Bold" />
+
+                    <Label
+                        Text="PCB Toolkit"
+                        TextColor="White"
+                        FontSize="18"
+                        FontAttributes="Bold" />
+
+                    <Label
+                        Text="SMD ve THT komponent tanımlama, kod çözümleme, paket referansı ve elektronik hesaplama araçlarını bir araya getiren çevrimdışı yardımcı uygulama."
+                        TextColor="#C9D1D9"
+                        FontSize="13"
+                        LineBreakMode="WordWrap" />
+
+                    <Label
+                        x:Name="VersionLabel"
+                        Text="Sürüm: —"
+                        TextColor="#8A929A"
+                        FontSize="12" />
+
+                </VerticalStackLayout>
+
+            </Border>
+
+            <!-- EN: Developer information -->
+            <!-- TR: Geliştirici bilgileri -->
+            <Border
+                BackgroundColor="#101820"
+                Stroke="#24313C"
+                StrokeThickness="1"
+                Padding="18">
+
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="14" />
+                </Border.StrokeShape>
+
+                <VerticalStackLayout Spacing="12">
+
+                    <Label
+                        Text="Geliştirici"
+                        TextColor="#4DB8FF"
+                        FontSize="17"
+                        FontAttributes="Bold" />
+
+                    <Label
+                        Text="Mert Akbıyık"
+                        TextColor="White"
+                        FontSize="16"
+                        FontAttributes="Bold" />
+
+                    <Label
+                        Text=".NET Developer"
+                        TextColor="#8A929A"
+                        FontSize="12" />
+
+                    <Grid
+                        ColumnDefinitions="*,*"
+                        ColumnSpacing="10">
+
+                        <Button
+                            Grid.Column="0"
+                            Text="GitHub"
+                            BackgroundColor="#18232C"
+                            TextColor="White"
+                            BorderColor="#24313C"
+                            BorderWidth="1"
+                            CornerRadius="10"
+                            Clicked="OnGitHubClicked" />
+
+                        <Button
+                            Grid.Column="1"
+                            Text="LinkedIn"
+                            BackgroundColor="#18232C"
+                            TextColor="White"
+                            BorderColor="#24313C"
+                            BorderWidth="1"
+                            CornerRadius="10"
+                            Clicked="OnLinkedInClicked" />
+
+                    </Grid>
+
+                </VerticalStackLayout>
+
+            </Border>
+
+            <!-- EN: Technical information -->
+            <!-- TR: Teknik bilgilendirme -->
+            <Border
+                BackgroundColor="#101820"
+                Stroke="#24313C"
+                StrokeThickness="1"
+                Padding="18">
+
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="14" />
+                </Border.StrokeShape>
+
+                <VerticalStackLayout Spacing="8">
+
+                    <Label
+                        Text="Teknik Bilgilendirme"
+                        TextColor="#4DB8FF"
+                        FontAttributes="Bold" />
+
+                    <Label
+                        Text="Paket ölçüleri ve teknik değerler üreticiye, seriye ve komponent varyantına göre değişebilir. PCB tasarımında komponent üreticisinin güncel datasheet ve package drawing bilgileri esas alınmalıdır."
+                        TextColor="#C9D1D9"
+                        FontSize="12"
+                        LineBreakMode="WordWrap" />
+
+                </VerticalStackLayout>
+
+            </Border>
+
+        </VerticalStackLayout>
+
+    </ScrollView>
+
+</ContentPage>

@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="PCBToolkit.Views.SmdResistorPage"
+    Shell.NavBarIsVisible="False"
+    BackgroundColor="#0B0F14">
+
+    <!-- EN: Main page layout -->
+    <!-- TR: Sayfanın ana düzeni -->
+    <Grid RowDefinitions="100,*">
+
+        <!-- EN: Header area -->
+        <!-- TR: Header alanı -->
+        <Grid
+            Grid.Row="0"
+            HeightRequest="100"
+            HorizontalOptions="Fill"
+            VerticalOptions="Fill">
+
+            <Image
+                Source="smd_resistor_code.png"
+                Aspect="AspectFill"
+                HorizontalOptions="Fill"
+                VerticalOptions="Fill"
+                InputTransparent="True" />
+
+            <BoxView
+                BackgroundColor="#650B0F14"
+                HorizontalOptions="Fill"
+                VerticalOptions="Fill"
+                InputTransparent="True" />
+
+            <Grid
+                Padding="18,12"
+                ColumnDefinitions="Auto,*"
+                ColumnSpacing="16">
+
+                <Border
+                    Grid.Column="0"
+                    WidthRequest="44"
+                    HeightRequest="44"
+                    BackgroundColor="#B5101820"
+                    Stroke="#4DB8FF"
+                    StrokeThickness="2"
+                    StrokeShape="RoundRectangle 14"
+                    HorizontalOptions="Start"
+                    VerticalOptions="Center">
+
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnBackTapped" />
+                    </Border.GestureRecognizers>
+
+                    <Grid
+                        WidthRequest="44"
+                        HeightRequest="44"
+                        InputTransparent="True">
+
+                        <Path
+                            Data="M 15,9 L 8,16 L 15,23"
+                            Stroke="#4DB8FF"
+                            StrokeThickness="3"
+                            StrokeLineCap="Round"
+                            StrokeLineJoin="Round"
+                            WidthRequest="23"
+                            HeightRequest="32"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            InputTransparent="True" />
+
+                    </Grid>
+
+                </Border>
+
+                <Label
+                    Grid.Column="1"
+                    Text="Direnç Kodu"
+                    TextColor="White"
+                    FontSize="24"
+                    FontAttributes="Bold"
+                    VerticalOptions="Center"
+                    LineBreakMode="TailTruncation"
+                    MaxLines="1" />
+
+            </Grid>
+
+            <BoxView
+                HeightRequest="1"
+                BackgroundColor="#17384D"
+                HorizontalOptions="Fill"
+                VerticalOptions="End"
+                InputTransparent="True" />
+
+        </Grid>
+
+        <!-- EN: Scrollable main content -->
+        <!-- TR: Kaydırılabilir ana içerik -->
+        <ScrollView
+            Grid.Row="1"
+            HorizontalScrollBarVisibility="Never"
+            VerticalScrollBarVisibility="Default">
+
+            <VerticalStackLayout
+                Padding="16,18,16,30"
+                Spacing="16"
+                HorizontalOptions="Fill"
+                MaximumWidthRequest="720">
+
+                <!-- EN: Resistor visual area -->
+                <!-- TR: Direnç görsel alanı -->
+                <Border
+                    MinimumHeightRequest="190"
+                    BackgroundColor="#101820"
+                    Stroke="#1E3444"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 18"
+                    HorizontalOptions="Fill">
+
+                    <Grid
+                        Padding="12"
+                        ColumnDefinitions="*,*"
+                        ColumnSpacing="10"
+                        MinimumHeightRequest="190">
+
+                        <!-- EN: Top view -->
+                        <!-- TR: Üstten görünüm -->
+                        <Grid
+                            Grid.Column="0"
+                            RowDefinitions="*,Auto"
+                            RowSpacing="6"
+                            MinimumWidthRequest="0">
+
+                            <Image
+                                x:Name="ResistorTopImage"
+                                Grid.Row="0"
+                                Source="smd_resistor_standard_top.png"
+                                Aspect="AspectFit"
+                                HorizontalOptions="Fill"
+                                VerticalOptions="Fill"
+                                MinimumHeightRequest="125" />
+
+                            <Label
+                                Grid.Row="1"
+                                Text="ÜSTTEN"
+                                TextColor="#71808E"
+                                FontSize="10"
+                                FontAttributes="Bold"
+                                CharacterSpacing="1.2"
+                                HorizontalTextAlignment="Center"
+                                LineBreakMode="NoWrap" />
+
+                        </Grid>
+
+                        <!-- EN: Perspective view -->
+                        <!-- TR: Perspektif görünüm -->
+                        <Grid
+                            Grid.Column="1"
+                            RowDefinitions="*,Auto"
+                            RowSpacing="6"
+                            MinimumWidthRequest="0">
+
+                            <Image
+                                x:Name="ResistorPerspectiveImage"
+                                Grid.Row="0"
+                                Source="smd_resistor_standard_perspective.png"
+                                Aspect="AspectFit"
+                                HorizontalOptions="Fill"
+                                VerticalOptions="Fill"
+                                MinimumHeightRequest="125" />
+
+                            <Label
+                                Grid.Row="1"
+                                Text="PERSPEKTİF"
+                                TextColor="#71808E"
+                                FontSize="10"
+                                FontAttributes="Bold"
+                                CharacterSpacing="1.2"
+                                HorizontalTextAlignment="Center"
+                                LineBreakMode="NoWrap" />
+
+                        </Grid>
+
+                    </Grid>
+
+                </Border>
+
+                <!-- EN: Resistor code input area -->
+                <!-- TR: Direnç kodu giriş alanı -->
+                <VerticalStackLayout Spacing="7">
+
+                    <Label
+                        Text="Direnç Kodu"
+                        TextColor="#AAB6C0"
+                        FontSize="13"
+                        FontAttributes="Bold" />
+
+                    <Border
+                        Padding="12,3"
+                        MinimumHeightRequest="50"
+                        BackgroundColor="#101820"
+                        Stroke="#263746"
+                        StrokeThickness="1"
+                        StrokeShape="RoundRectangle 12"
+                        HorizontalOptions="Fill">
+
+                        <Entry
+                            x:Name="ResistorCodeEntry"
+                            Placeholder="Örn: 103, 472, 1001"
+                            PlaceholderColor="#566674"
+                            TextColor="White"
+                            FontSize="17"
+                            BackgroundColor="Transparent"
+                            HorizontalOptions="Fill"
+                            VerticalOptions="Center"
+                            ClearButtonVisibility="WhileEditing" />
+
+                    </Border>
+
+                </VerticalStackLayout>
+
+                <!-- EN: Code type selection area -->
+                <!-- TR: Kod türü seçim alanı -->
+                <VerticalStackLayout Spacing="7">
+
+                    <Label
+                        Text="Kod Türü"
+                        TextColor="#AAB6C0"
+                        FontSize="13"
+                        FontAttributes="Bold" />
+
+                    <Grid
+                        ColumnDefinitions="*,*,*"
+                        ColumnSpacing="6"
+                        HorizontalOptions="Fill">
+
+                        <Button
+                            x:Name="StandardCodeButton"
+                            Grid.Column="0"
+                            Text="3 / 4 Hane"
+                            HeightRequest="40"
+                            MinimumWidthRequest="0"
+                            Padding="2,0"
+                            FontSize="11"
+                            TextColor="#4DB8FF"
+                            BackgroundColor="#102536"
+                            BorderColor="#168BD2"
+                            BorderWidth="1"
+                            CornerRadius="10"
+                            LineBreakMode="NoWrap"
+                            Clicked="OnStandardCodeClicked" />
+
+                        <Button
+                            x:Name="RCodeButton"
+                            Grid.Column="1"
+                            Text="R Kodu"
+                            HeightRequest="40"
+                            MinimumWidthRequest="0"
+                            Padding="2,0"
+                            FontSize="11"
+                            TextColor="#AAB6C0"
+                            BackgroundColor="#101820"
+                            BorderColor="Transparent"
+                            BorderWidth="1"
+                            CornerRadius="10"
+                            LineBreakMode="NoWrap"
+                            Clicked="OnRCodeClicked" />
+
+                        <Button
+                            x:Name="Eia96Button"
+                            Grid.Column="2"
+                            Text="EIA-96"
+                            HeightRequest="40"
+                            MinimumWidthRequest="0"
+                            Padding="2,0"
+                            FontSize="11"
+                            TextColor="#AAB6C0"
+                            BackgroundColor="#101820"
+                            BorderColor="Transparent"
+                            BorderWidth="1"
+                            CornerRadius="10"
+                            LineBreakMode="NoWrap"
+                            Clicked="OnEia96Clicked" />
+
+                    </Grid>
+
+                </VerticalStackLayout>
+
+                <!-- EN: Calculation action buttons -->
+                <!-- TR: Hesaplama işlem butonları -->
+                <Grid
+                    ColumnDefinitions="*,*"
+                    ColumnSpacing="8"
+                    HorizontalOptions="Fill">
+
+                    <Button
+                        x:Name="CalculateButton"
+                        Grid.Column="0"
+                        Text="HESAPLA"
+                        HeightRequest="48"
+                        MinimumWidthRequest="0"
+                        Padding="4,0"
+                        FontSize="13"
+                        BackgroundColor="#168BD2"
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        CornerRadius="12"
+                        Clicked="OnCalculateClicked" />
+
+                    <Button
+                        x:Name="ClearButton"
+                        Grid.Column="1"
+                        Text="TEMİZLE"
+                        HeightRequest="48"
+                        MinimumWidthRequest="0"
+                        Padding="4,0"
+                        FontSize="13"
+                        BackgroundColor="#101820"
+                        TextColor="#AAB6C0"
+                        BorderColor="#263746"
+                        BorderWidth="1"
+                        FontAttributes="Bold"
+                        CornerRadius="12"
+                        Clicked="OnClearClicked" />
+
+                </Grid>
+
+                <!-- EN: Calculation result and code explanation -->
+                <!-- TR: Hesaplama sonucu ve kod açıklaması -->
+                <Border
+                    x:Name="ResultCard"
+                    Padding="18"
+                    MinimumHeightRequest="210"
+                    BackgroundColor="#0D1B25"
+                    Stroke="#168BD2"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 18"
+                    HorizontalOptions="Fill">
+
+                    <VerticalStackLayout Spacing="0">
+
+                        <Label
+                            Text="SONUÇ"
+                            TextColor="#71808E"
+                            FontSize="11"
+                            FontAttributes="Bold"
+                            CharacterSpacing="1.5" />
+
+                        <Label
+                            x:Name="ResultLabel"
+                            Text="—"
+                            TextColor="#4DB8FF"
+                            FontSize="29"
+                            FontAttributes="Bold"
+                            Margin="0,5,0,15"
+                            LineBreakMode="WordWrap" />
+
+                        <!-- EN: Code information -->
+                        <!-- TR: Kod bilgisi -->
+                        <Grid
+                            ColumnDefinitions="Auto,*"
+                            ColumnSpacing="14"
+                            RowDefinitions="Auto,Auto,Auto,Auto"
+                            RowSpacing="9">
+
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                Text="Kod"
+                                TextColor="#71808E"
+                                FontSize="12"
+                                FontAttributes="Bold"
+                                VerticalOptions="Start" />
+
+                            <Label
+                                x:Name="CodeDetailLabel"
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                Text="—"
+                                TextColor="#D9E4EC"
+                                FontSize="13"
+                                HorizontalTextAlignment="End"
+                                LineBreakMode="WordWrap" />
+
+                            <Label
+                                x:Name="BaseTitleLabel"
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                Text="Temel Değer"
+                                TextColor="#71808E"
+                                FontSize="12"
+                                FontAttributes="Bold"
+                                VerticalOptions="Start" />
+
+                            <Label
+                                x:Name="BaseValueLabel"
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                Text="—"
+                                TextColor="#D9E4EC"
+                                FontSize="13"
+                                HorizontalTextAlignment="End"
+                                LineBreakMode="WordWrap" />
+
+                            <Label
+                                x:Name="RuleTitleLabel"
+                                Grid.Row="2"
+                                Grid.Column="0"
+                                Text="Çarpan"
+                                TextColor="#71808E"
+                                FontSize="12"
+                                FontAttributes="Bold"
+                                VerticalOptions="Start" />
+
+                            <Label
+                                x:Name="RuleValueLabel"
+                                Grid.Row="2"
+                                Grid.Column="1"
+                                Text="—"
+                                TextColor="#D9E4EC"
+                                FontSize="13"
+                                HorizontalTextAlignment="End"
+                                LineBreakMode="WordWrap" />
+
+                            <Label
+                                Grid.Row="3"
+                                Grid.Column="0"
+                                Text="Hesaplama"
+                                TextColor="#71808E"
+                                FontSize="12"
+                                FontAttributes="Bold"
+                                VerticalOptions="Start" />
+
+                            <Label
+                                x:Name="CalculationDetailLabel"
+                                Grid.Row="3"
+                                Grid.Column="1"
+                                Text="Direnç kodunu girerek hesaplama yapabilirsiniz."
+                                TextColor="#8998A5"
+                                FontSize="13"
+                                HorizontalTextAlignment="End"
+                                LineBreakMode="WordWrap" />
+
+                        </Grid>
+
+                    </VerticalStackLayout>
+
+                </Border>
+
+            </VerticalStackLayout>
+
+        </ScrollView>
+
+    </Grid>
+
+</ContentPage>

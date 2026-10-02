@@ -1,0 +1,348 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="PCBToolkit.MainPage"
+    Shell.NavBarIsVisible="False"
+    BackgroundColor="#0B0F14"
+    SizeChanged="OnPageSizeChanged">
+
+    <Grid
+        x:Name="MainLayout"
+        RowDefinitions="90,*,70"
+        BackgroundColor="#0B0F14">
+
+        <!-- EN: Header area -->
+        <!-- TR: Header alanı -->
+        <Grid
+            x:Name="HeaderArea"
+            Grid.Row="0">
+
+            <Image
+                x:Name="HeaderImage"
+                Source="electronics_header_maui2.png"
+                Aspect="AspectFill"
+                HorizontalOptions="Fill"
+                VerticalOptions="Fill"
+                InputTransparent="True" />
+
+            <!-- EN: Settings button -->
+            <!-- TR: Ayarlar butonu -->
+            <Border
+                x:Name="SettingsButton"
+                WidthRequest="34"
+                HeightRequest="34"
+                Margin="0,-2,24,0"
+                HorizontalOptions="End"
+                VerticalOptions="Center"
+                BackgroundColor="#0B1722"
+                StrokeThickness="0"
+                StrokeShape="RoundRectangle 17"
+                ZIndex="10">
+
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Tapped="OnSettingsTapped" />
+                </Border.GestureRecognizers>
+
+                <Label
+                    x:Name="SettingsIcon"
+                    Text="⚙"
+                    TextColor="#DCEEFF"
+                    FontSize="24"
+                    HorizontalTextAlignment="Center"
+                    VerticalTextAlignment="Center"
+                    InputTransparent="True" />
+
+            </Border>
+
+        </Grid>
+
+        <!-- EN: Responsive SMD and THT content area -->
+        <!-- TR: Responsive SMD ve THT içerik alanı -->
+        <Grid
+            x:Name="ContentArea"
+            Grid.Row="1"
+            Padding="18"
+            RowDefinitions="*,*">
+
+            <!-- EN: SMD card -->
+            <!-- TR: SMD kartı -->
+            <Border
+                x:Name="SmdCard"
+                Grid.Row="0"
+                Margin="0,0,0,5"
+                Stroke="#168BD2"
+                StrokeThickness="1"
+                BackgroundColor="#0D1B25"
+                StrokeShape="RoundRectangle 24">
+
+                <Grid>
+
+                    <Image
+                        Source="smd_main.png"
+                        Aspect="AspectFill"
+                        Opacity="0.92"
+                        InputTransparent="True" />
+
+                    <BoxView
+                        BackgroundColor="#18000000"
+                        InputTransparent="True" />
+
+                </Grid>
+
+            </Border>
+
+            <!-- EN: THT card -->
+            <!-- TR: THT kartı -->
+            <Border
+                x:Name="ThtCard"
+                Grid.Row="1"
+                Margin="0,5,0,0"
+                Stroke="#C77932"
+                StrokeThickness="1"
+                BackgroundColor="#21170F"
+                StrokeShape="RoundRectangle 24">
+
+                <Grid>
+
+                    <Image
+                        Source="tht_main.png"
+                        Aspect="AspectFill"
+                        Opacity="0.92"
+                        InputTransparent="True" />
+
+                    <BoxView
+                        BackgroundColor="#18000000"
+                        InputTransparent="True" />
+
+                </Grid>
+
+            </Border>
+
+            <!-- EN: Slider gesture area -->
+            <!-- TR: Slider hareket alanı -->
+            <Grid
+                x:Name="SliderContainer"
+                Grid.RowSpan="2"
+                HorizontalOptions="Fill"
+                VerticalOptions="Fill"
+                ZIndex="10">
+
+                <Grid.GestureRecognizers>
+                    <PanGestureRecognizer
+                        PanUpdated="OnDividerPanUpdated" />
+                </Grid.GestureRecognizers>
+
+                <!-- EN: Moving slider and wave group -->
+                <!-- TR: Hareket eden slider ve dalga grubu -->
+                <Grid
+                    x:Name="SliderVisual"
+                    WidthRequest="155"
+                    HeightRequest="175"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center">
+
+                    <!-- EN: Outer animated wave -->
+                    <!-- TR: Dış animasyon dalgası -->
+                    <Border
+                        x:Name="Wave3"
+                        WidthRequest="116"
+                        HeightRequest="146"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        BackgroundColor="Transparent"
+                        Stroke="#667783"
+                        StrokeThickness="1"
+                        Opacity="0"
+                        InputTransparent="True"
+                        StrokeShape="RoundRectangle 58" />
+
+                    <!-- EN: Middle animated wave -->
+                    <!-- TR: Orta animasyon dalgası -->
+                    <Border
+                        x:Name="Wave2"
+                        WidthRequest="108"
+                        HeightRequest="136"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        BackgroundColor="Transparent"
+                        Stroke="#778792"
+                        StrokeThickness="1"
+                        Opacity="0"
+                        InputTransparent="True"
+                        StrokeShape="RoundRectangle 54" />
+
+                    <!-- EN: Inner animated wave -->
+                    <!-- TR: İç animasyon dalgası -->
+                    <Border
+                        x:Name="Wave1"
+                        WidthRequest="100"
+                        HeightRequest="126"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        BackgroundColor="Transparent"
+                        Stroke="#8998A3"
+                        StrokeThickness="1"
+                        Opacity="0"
+                        InputTransparent="True"
+                        StrokeShape="RoundRectangle 50" />
+
+                    <!-- EN: Neutral capsule slider -->
+                    <!-- TR: Nötr kapsül slider -->
+                    <Border
+                        x:Name="DragHandle"
+                        WidthRequest="72"
+                        HeightRequest="104"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        BackgroundColor="#151D26"
+                        Stroke="#687681"
+                        StrokeThickness="1.5"
+                        StrokeShape="RoundRectangle 36">
+
+                        <Border.Shadow>
+                            <Shadow
+                                Brush="#687681"
+                                Offset="0,4"
+                                Radius="16"
+                                Opacity="0.35" />
+                        </Border.Shadow>
+
+                        <Grid
+                            Padding="0,12"
+                            InputTransparent="True">
+
+                            <!-- EN: Single vertical light line -->
+                            <!-- TR: Tek dikey ışık çizgisi -->
+                            <Border
+                                x:Name="SliderLightLine"
+                                WidthRequest="3"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Fill"
+                                BackgroundColor="#A7B1B9"
+                                StrokeThickness="0"
+                                StrokeShape="RoundRectangle 2"
+                                InputTransparent="True">
+
+                                <Border.Shadow>
+                                    <Shadow
+                                        Brush="#A7B1B9"
+                                        Offset="0,0"
+                                        Radius="6"
+                                        Opacity="0.45" />
+                                </Border.Shadow>
+
+                            </Border>
+
+                        </Grid>
+
+                    </Border>
+
+                </Grid>
+
+            </Grid>
+
+        </Grid>
+
+        <!-- EN: Footer area -->
+        <!-- TR: Footer alanı -->
+        <Grid
+            x:Name="FooterArea"
+            Grid.Row="2"
+            Padding="14,8"
+            ColumnDefinitions="*,Auto,Auto"
+            ColumnSpacing="14">
+
+            <BoxView
+                Grid.ColumnSpan="3"
+                HeightRequest="1"
+                BackgroundColor="#D9823B"
+                Opacity="0.65"
+                VerticalOptions="Start"
+                InputTransparent="True" />
+
+            <!-- EN: Developer information -->
+            <!-- TR: Geliştirici bilgileri -->
+            <VerticalStackLayout
+                x:Name="DeveloperArea"
+                Grid.Column="0"
+                Spacing="-2"
+                VerticalOptions="Center">
+
+                <Label
+                    Text=".NET Developer"
+                    TextColor="#A56B3C"
+                    FontSize="10" />
+
+                <Label
+                    Text="Mert AKBIYIK"
+                    TextColor="#F0A35C"
+                    FontSize="13"
+                    FontAttributes="Bold"
+                    LineBreakMode="NoWrap" />
+
+            </VerticalStackLayout>
+
+            <!-- EN: LinkedIn button -->
+            <!-- TR: LinkedIn butonu -->
+            <Border
+                x:Name="LinkedInButton"
+                Grid.Column="1"
+                WidthRequest="72"
+                HeightRequest="32"
+                Padding="8,0"
+                BackgroundColor="#17110D"
+                Stroke="#74421E"
+                StrokeThickness="1"
+                StrokeShape="RoundRectangle 12"
+                VerticalOptions="Center">
+
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Tapped="OnLinkedInTapped" />
+                </Border.GestureRecognizers>
+
+                <Label
+                    Text="LinkedIn"
+                    TextColor="#E9B17D"
+                    FontSize="11"
+                    HorizontalTextAlignment="Center"
+                    VerticalTextAlignment="Center" />
+
+            </Border>
+
+            <!-- EN: GitHub button -->
+            <!-- TR: GitHub butonu -->
+            <Border
+                x:Name="GitHubButton"
+                Grid.Column="2"
+                WidthRequest="72"
+                HeightRequest="32"
+                Padding="8,0"
+                BackgroundColor="#17110D"
+                Stroke="#74421E"
+                StrokeThickness="1"
+                StrokeShape="RoundRectangle 12"
+                VerticalOptions="Center">
+
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Tapped="OnGitHubTapped" />
+                </Border.GestureRecognizers>
+
+                <Label
+                    Text="GitHub"
+                    TextColor="#E9B17D"
+                    FontSize="11"
+                    HorizontalTextAlignment="Center"
+                    VerticalTextAlignment="Center" />
+
+            </Border>
+
+        </Grid>
+
+    </Grid>
+
+</ContentPage>

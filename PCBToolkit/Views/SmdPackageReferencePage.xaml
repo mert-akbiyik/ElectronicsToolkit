@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    x:Class="PCBToolkit.Views.SmdPackageReferencePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Shell.NavBarIsVisible="False"
+    BackgroundColor="#0B0F14">
+
+    <!-- EN: Main page layout -->
+    <!-- TR: Sayfanın ana düzeni -->
+    <Grid RowDefinitions="100,*">
+
+        <!-- EN: Header area -->
+        <!-- TR: Header alanı -->
+        <Grid
+            Grid.Row="0"
+            HeightRequest="100"
+            HorizontalOptions="Fill"
+            VerticalOptions="Fill">
+
+            <!-- EN: Header background image -->
+            <!-- TR: Header arka plan görseli -->
+            <Image
+                Source="smd_package_reference.png"
+                Aspect="AspectFill"
+                HorizontalOptions="Fill"
+                VerticalOptions="Fill"
+                InputTransparent="True" />
+
+            <!-- EN: Header readability overlay -->
+            <!-- TR: Header okunabilirlik katmanı -->
+            <BoxView
+                BackgroundColor="#650B0F14"
+                HorizontalOptions="Fill"
+                VerticalOptions="Fill"
+                InputTransparent="True" />
+
+            <!-- EN: Header content -->
+            <!-- TR: Header içeriği -->
+            <Grid
+                Padding="18,12"
+                ColumnDefinitions="Auto,*"
+                ColumnSpacing="16">
+
+                <!-- EN: Back navigation button -->
+                <!-- TR: Geri dönüş butonu -->
+                <Border
+                    Grid.Column="0"
+                    WidthRequest="44"
+                    HeightRequest="44"
+                    BackgroundColor="#B5101820"
+                    Stroke="#4DB8FF"
+                    StrokeThickness="2"
+                    StrokeShape="RoundRectangle 14"
+                    HorizontalOptions="Start"
+                    VerticalOptions="Center">
+
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnBackTapped" />
+                    </Border.GestureRecognizers>
+
+                    <Grid
+                        WidthRequest="44"
+                        HeightRequest="44"
+                        InputTransparent="True">
+
+                        <!-- EN: Geometric back arrow -->
+                        <!-- TR: Geometrik geri oku -->
+                        <Path
+                            Data="M 15,9 L 8,16 L 15,23"
+                            Stroke="#4DB8FF"
+                            StrokeThickness="3"
+                            StrokeLineCap="Round"
+                            StrokeLineJoin="Round"
+                            WidthRequest="23"
+                            HeightRequest="32"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            InputTransparent="True" />
+
+                    </Grid>
+
+                </Border>
+
+                <!-- EN: Page title -->
+                <!-- TR: Sayfa başlığı -->
+                <Label
+                    Grid.Column="1"
+                    Text="Paket Referansı"
+                    TextColor="White"
+                    FontSize="24"
+                    FontAttributes="Bold"
+                    VerticalOptions="Center"
+                    LineBreakMode="TailTruncation"
+                    MaxLines="1" />
+
+            </Grid>
+
+            <!-- EN: Header bottom divider -->
+            <!-- TR: Header alt ayırıcı -->
+            <BoxView
+                HeightRequest="1"
+                BackgroundColor="#17384D"
+                HorizontalOptions="Fill"
+                VerticalOptions="End"
+                InputTransparent="True" />
+
+        </Grid>
+
+        <!-- EN: Scrollable main content -->
+        <!-- TR: Kaydırılabilir ana içerik -->
+        <ScrollView
+            Grid.Row="1"
+            HorizontalScrollBarVisibility="Never"
+            VerticalScrollBarVisibility="Default">
+
+            <VerticalStackLayout
+                Padding="20,18,20,30"
+                Spacing="18"
+                HorizontalOptions="Fill"
+                MaximumWidthRequest="720">
+
+                <!-- EN: Package selection area -->
+                <!-- TR: Paket seçim alanı -->
+                <Border
+                    Padding="16"
+                    BackgroundColor="#101820"
+                    Stroke="#263746"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 14"
+                    HorizontalOptions="Fill">
+
+                    <VerticalStackLayout Spacing="14">
+
+                        <!-- EN: Package family selection -->
+                        <!-- TR: Paket ailesi seçimi -->
+                        <VerticalStackLayout Spacing="6">
+
+                            <Label
+                                Text="Paket Ailesi"
+                                TextColor="#AAB6C0"
+                                FontSize="13"
+                                FontAttributes="Bold" />
+
+                            <Picker
+                                x:Name="FamilyPicker"
+                                TextColor="White"
+                                BackgroundColor="#0B0F14"
+                                HorizontalOptions="Fill"
+                                SelectedIndexChanged="OnFamilySelected" />
+
+                        </VerticalStackLayout>
+
+                        <!-- EN: Package selection -->
+                        <!-- TR: Paket seçimi -->
+                        <VerticalStackLayout Spacing="6">
+
+                            <Label
+                                Text="Paket"
+                                TextColor="#AAB6C0"
+                                FontSize="13"
+                                FontAttributes="Bold" />
+
+                            <Picker
+                                x:Name="PackagePicker"
+                                TextColor="White"
+                                BackgroundColor="#0B0F14"
+                                HorizontalOptions="Fill"
+                                IsEnabled="False"
+                                SelectedIndexChanged="OnPackageSelected" />
+
+                        </VerticalStackLayout>
+
+                    </VerticalStackLayout>
+
+                </Border>
+
+                <!-- EN: Technical package information -->
+                <!-- TR: Teknik paket bilgileri -->
+                <Border
+                    x:Name="TechnicalInfoCard"
+                    Padding="16"
+                    BackgroundColor="#101820"
+                    Stroke="#263746"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 14"
+                    HorizontalOptions="Fill">
+
+                    <VerticalStackLayout Spacing="14">
+
+                        <Label
+                            Text="Teknik Bilgiler"
+                            TextColor="White"
+                            FontSize="16"
+                            FontAttributes="Bold" />
+
+                        <!-- EN: Package description -->
+                        <!-- TR: Paket açıklaması -->
+                        <Label
+                            x:Name="DescriptionLabel"
+                            Text="Paket seçerek bilgileri görüntüleyebilirsiniz."
+                            TextColor="#AAB6C0"
+                            FontSize="14"
+                            LineBreakMode="WordWrap" />
+
+                        <BoxView
+                            HeightRequest="1"
+                            Color="#263746" />
+
+                        <!-- EN: Package properties -->
+                        <!-- TR: Paket özellikleri -->
+                        <Grid
+                            ColumnDefinitions="130,*"
+                            RowDefinitions="Auto,Auto,Auto,Auto"
+                            RowSpacing="12"
+                            ColumnSpacing="10">
+
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                Text="Montaj"
+                                TextColor="#7F8C96" />
+
+                            <Label
+                                x:Name="MountingLabel"
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                Text="—"
+                                TextColor="White"
+                                LineBreakMode="WordWrap" />
+
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                Text="Pin Tipi"
+                                TextColor="#7F8C96" />
+
+                            <Label
+                                x:Name="PinTypeLabel"
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                Text="—"
+                                TextColor="White"
+                                LineBreakMode="WordWrap" />
+
+                            <Label
+                                Grid.Row="2"
+                                Grid.Column="0"
+                                Text="Pin Sayısı"
+                                TextColor="#7F8C96" />
+
+                            <Label
+                                x:Name="PinCountLabel"
+                                Grid.Row="2"
+                                Grid.Column="1"
+                                Text="—"
+                                TextColor="White"
+                                LineBreakMode="WordWrap" />
+
+                            <Label
+                                Grid.Row="3"
+                                Grid.Column="0"
+                                Text="Pitch"
+                                TextColor="#7F8C96" />
+
+                            <Label
+                                x:Name="PitchLabel"
+                                Grid.Row="3"
+                                Grid.Column="1"
+                                Text="—"
+                                TextColor="White"
+                                LineBreakMode="WordWrap" />
+
+                        </Grid>
+
+                        <BoxView
+                            HeightRequest="1"
+                            Color="#263746" />
+
+                        <!-- EN: Common usage information -->
+                        <!-- TR: Yaygın kullanım bilgisi -->
+                        <Label
+                            Text="Yaygın Kullanım"
+                            TextColor="#7F8C96"
+                            FontSize="12" />
+
+                        <Label
+                            x:Name="UsageLabel"
+                            Text="—"
+                            TextColor="White"
+                            FontSize="14"
+                            LineBreakMode="WordWrap" />
+
+                    </VerticalStackLayout>
+
+                </Border>
+
+                <!-- EN: Official package and visual sources -->
+                <!-- TR: Resmî paket ve görsel kaynakları -->
+                <Border
+                    Padding="14"
+                    BackgroundColor="#0F1720"
+                    Stroke="#263746"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 10"
+                    HorizontalOptions="Fill">
+
+                    <VerticalStackLayout Spacing="10">
+
+                        <Label
+                            Text="Bilgi: Paket özellikleri üreticiye, ürün serisine ve paket varyantına göre farklılık gösterebilir. Kesin ölçüler ve teknik detaylar için ilgili üreticinin veri sayfasını kontrol ediniz."
+                            TextColor="#7F8C96"
+                            FontSize="12"
+                            LineBreakMode="WordWrap" />
+
+                        <Label
+                            Margin="0,4,0,0"
+                            Text="Paket çizimlerine, gerçek ürün görsellerine ve ayrıntılı teknik bilgilere aşağıdaki resmî üretici kaynaklarından ulaşabilirsiniz:"
+                            TextColor="#AAB6C0"
+                            FontSize="12"
+                            LineBreakMode="WordWrap" />
+
+                        <!-- EN: Official Texas Instruments package source -->
+                        <!-- TR: Texas Instruments resmî paket kaynağı -->
+                        <Label
+                            Text="Texas Instruments — Package Search"
+                            TextColor="#4DB8FF"
+                            FontSize="12"
+                            FontAttributes="Bold"
+                            LineBreakMode="WordWrap" />
+
+                        <!-- EN: Official Nexperia package source -->
+                        <!-- TR: Nexperia resmî paket kaynağı -->
+                        <Label
+                            Text="Nexperia — Packages"
+                            TextColor="#4DB8FF"
+                            FontSize="12"
+                            FontAttributes="Bold"
+                            LineBreakMode="WordWrap" />
+
+                        <!-- EN: Official Infineon package source -->
+                        <!-- TR: Infineon resmî paket kaynağı -->
+                        <Label
+                            Text="Infineon — Packages"
+                            TextColor="#4DB8FF"
+                            FontSize="12"
+                            FontAttributes="Bold"
+                            LineBreakMode="WordWrap" />
+
+                    </VerticalStackLayout>
+
+                </Border>
+
+            </VerticalStackLayout>
+
+        </ScrollView>
+
+    </Grid>
+
+</ContentPage>

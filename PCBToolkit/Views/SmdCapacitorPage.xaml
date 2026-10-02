@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="PCBToolkit.Views.SmdCapacitorPage"
+    Shell.NavBarIsVisible="False"
+    BackgroundColor="#0B0F14">
+
+    <!-- EN: Main page layout -->
+    <!-- TR: Sayfanın ana düzeni -->
+    <Grid RowDefinitions="100,*">
+
+        <!-- EN: Header area -->
+        <!-- TR: Header alanı -->
+        <Grid
+            Grid.Row="0"
+            HeightRequest="100"
+            HorizontalOptions="Fill"
+            VerticalOptions="Fill">
+
+            <!-- EN: Header background image -->
+            <!-- TR: Header arka plan görseli -->
+            <Image
+                Source="smd_capacitor_code.png"
+                Aspect="AspectFill"
+                HorizontalOptions="Fill"
+                VerticalOptions="Fill"
+                InputTransparent="True" />
+
+            <!-- EN: Header readability overlay -->
+            <!-- TR: Header okunabilirlik katmanı -->
+            <BoxView
+                BackgroundColor="#650B0F14"
+                HorizontalOptions="Fill"
+                VerticalOptions="Fill"
+                InputTransparent="True" />
+
+            <!-- EN: Header content -->
+            <!-- TR: Header içeriği -->
+            <Grid
+                Padding="18,12"
+                ColumnDefinitions="Auto,*"
+                ColumnSpacing="16">
+
+                <!-- EN: Back navigation button -->
+                <!-- TR: Geri dönüş butonu -->
+                <Border
+                    Grid.Column="0"
+                    WidthRequest="44"
+                    HeightRequest="44"
+                    BackgroundColor="#B5101820"
+                    Stroke="#4DB8FF"
+                    StrokeThickness="2"
+                    StrokeShape="RoundRectangle 14"
+                    HorizontalOptions="Start"
+                    VerticalOptions="Center">
+
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnBackTapped" />
+                    </Border.GestureRecognizers>
+
+                    <Grid
+                        WidthRequest="44"
+                        HeightRequest="44"
+                        InputTransparent="True">
+
+                        <!-- EN: Geometric back arrow -->
+                        <!-- TR: Geometrik geri oku -->
+                        <Path
+                            Data="M 15,9 L 8,16 L 15,23"
+                            Stroke="#4DB8FF"
+                            StrokeThickness="3"
+                            StrokeLineCap="Round"
+                            StrokeLineJoin="Round"
+                            WidthRequest="23"
+                            HeightRequest="32"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            InputTransparent="True" />
+
+                    </Grid>
+
+                </Border>
+
+                <!-- EN: Page title -->
+                <!-- TR: Sayfa başlığı -->
+                <Label
+                    Grid.Column="1"
+                    Text="Kapasitör Kodu"
+                    TextColor="White"
+                    FontSize="24"
+                    FontAttributes="Bold"
+                    VerticalOptions="Center"
+                    LineBreakMode="TailTruncation"
+                    MaxLines="1" />
+
+            </Grid>
+
+            <!-- EN: Header bottom divider -->
+            <!-- TR: Header alt ayırıcı -->
+            <BoxView
+                HeightRequest="1"
+                BackgroundColor="#17384D"
+                HorizontalOptions="Fill"
+                VerticalOptions="End"
+                InputTransparent="True" />
+
+        </Grid>
+
+        <!-- EN: Scrollable main content -->
+        <!-- TR: Kaydırılabilir ana içerik -->
+        <ScrollView
+            Grid.Row="1"
+            HorizontalScrollBarVisibility="Never"
+            VerticalScrollBarVisibility="Default">
+
+            <VerticalStackLayout
+                Padding="16,18,16,30"
+                Spacing="16"
+                HorizontalOptions="Fill"
+                MaximumWidthRequest="720">
+
+                <!-- EN: Capacitor visual area -->
+                <!-- TR: Kapasitör görsel alanı -->
+                <Border
+                    MinimumHeightRequest="190"
+                    BackgroundColor="#101820"
+                    Stroke="#1E3444"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 18"
+                    HorizontalOptions="Fill">
+
+                    <Grid
+                        Padding="12"
+                        ColumnDefinitions="*,*"
+                        ColumnSpacing="10"
+                        MinimumHeightRequest="190">
+
+                        <!-- EN: Top view -->
+                        <!-- TR: Üstten görünüm -->
+                        <Grid
+                            Grid.Column="0"
+                            RowDefinitions="*,Auto"
+                            RowSpacing="6"
+                            MinimumWidthRequest="0">
+
+                            <Image
+                                x:Name="CapacitorTopImage"
+                                Grid.Row="0"
+                                Source="smd_capacitor_top.png"
+                                Aspect="AspectFit"
+                                HorizontalOptions="Fill"
+                                VerticalOptions="Fill"
+                                MinimumHeightRequest="125" />
+
+                            <Label
+                                Grid.Row="1"
+                                Text="ÜSTTEN"
+                                TextColor="#71808E"
+                                FontSize="10"
+                                FontAttributes="Bold"
+                                CharacterSpacing="1.2"
+                                HorizontalTextAlignment="Center"
+                                LineBreakMode="NoWrap" />
+
+                        </Grid>
+
+                        <!-- EN: Perspective view -->
+                        <!-- TR: Perspektif görünüm -->
+                        <Grid
+                            Grid.Column="1"
+                            RowDefinitions="*,Auto"
+                            RowSpacing="6"
+                            MinimumWidthRequest="0">
+
+                            <Image
+                                x:Name="CapacitorPerspectiveImage"
+                                Grid.Row="0"
+                                Source="smd_capacitor_perspective.png"
+                                Aspect="AspectFit"
+                                HorizontalOptions="Fill"
+                                VerticalOptions="Fill"
+                                MinimumHeightRequest="125" />
+
+                            <Label
+                                Grid.Row="1"
+                                Text="PERSPEKTİF"
+                                TextColor="#71808E"
+                                FontSize="10"
+                                FontAttributes="Bold"
+                                CharacterSpacing="1.2"
+                                HorizontalTextAlignment="Center"
+                                LineBreakMode="NoWrap" />
+
+                        </Grid>
+
+                    </Grid>
+
+                </Border>
+
+                <!-- EN: Capacitor code input area -->
+                <!-- TR: Kapasitör kodu giriş alanı -->
+                <VerticalStackLayout Spacing="7">
+
+                    <Label
+                        Text="Kapasitör Kodu"
+                        TextColor="#AAB6C0"
+                        FontSize="13"
+                        FontAttributes="Bold" />
+
+                    <Border
+                        Padding="12,3"
+                        MinimumHeightRequest="50"
+                        BackgroundColor="#101820"
+                        Stroke="#263746"
+                        StrokeThickness="1"
+                        StrokeShape="RoundRectangle 12"
+                        HorizontalOptions="Fill">
+
+                        <Entry
+                            x:Name="CapacitorCodeEntry"
+                            Placeholder="Örn: 104, 103, 472"
+                            PlaceholderColor="#566674"
+                            TextColor="White"
+                            FontSize="17"
+                            Keyboard="Numeric"
+                            BackgroundColor="Transparent"
+                            HorizontalOptions="Fill"
+                            VerticalOptions="Center"
+                            ClearButtonVisibility="WhileEditing" />
+
+                    </Border>
+
+                </VerticalStackLayout>
+
+                <!-- EN: Calculation action buttons -->
+                <!-- TR: Hesaplama işlem butonları -->
+                <Grid
+                    ColumnDefinitions="*,*"
+                    ColumnSpacing="8"
+                    HorizontalOptions="Fill">
+
+                    <Button
+                        x:Name="CalculateButton"
+                        Grid.Column="0"
+                        Text="HESAPLA"
+                        HeightRequest="48"
+                        MinimumWidthRequest="0"
+                        Padding="4,0"
+                        FontSize="13"
+                        BackgroundColor="#168BD2"
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        CornerRadius="12"
+                        Clicked="OnCalculateClicked" />
+
+                    <Button
+                        x:Name="ClearButton"
+                        Grid.Column="1"
+                        Text="TEMİZLE"
+                        HeightRequest="48"
+                        MinimumWidthRequest="0"
+                        Padding="4,0"
+                        FontSize="13"
+                        BackgroundColor="#101820"
+                        TextColor="#AAB6C0"
+                        BorderColor="#263746"
+                        BorderWidth="1"
+                        FontAttributes="Bold"
+                        CornerRadius="12"
+                        Clicked="OnClearClicked" />
+
+                </Grid>
+
+                <!-- EN: Calculation result -->
+                <!-- TR: Hesaplama sonucu -->
+                <Border
+                    x:Name="ResultCard"
+                    Padding="18"
+                    MinimumHeightRequest="180"
+                    BackgroundColor="#0D1B25"
+                    Stroke="#168BD2"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 18"
+                    HorizontalOptions="Fill">
+
+                    <VerticalStackLayout Spacing="7">
+
+                        <!-- EN: Result title -->
+                        <!-- TR: Sonuç başlığı -->
+                        <Label
+                            Text="SONUÇ"
+                            TextColor="#71808E"
+                            FontSize="11"
+                            FontAttributes="Bold"
+                            CharacterSpacing="1.5" />
+
+                        <!-- EN: Picofarad result -->
+                        <!-- TR: Pikofarad sonucu -->
+                        <Label
+                            x:Name="PicofaradResultLabel"
+                            Text="— pF"
+                            TextColor="#4DB8FF"
+                            FontSize="29"
+                            FontAttributes="Bold"
+                            LineBreakMode="WordWrap" />
+
+                        <!-- EN: Nanofarad result -->
+                        <!-- TR: Nanofarad sonucu -->
+                        <Label
+                            x:Name="NanofaradResultLabel"
+                            Text="— nF"
+                            TextColor="White"
+                            FontSize="18"
+                            LineBreakMode="WordWrap" />
+
+                        <!-- EN: Microfarad result -->
+                        <!-- TR: Mikrofarad sonucu -->
+                        <Label
+                            x:Name="MicrofaradResultLabel"
+                            Text="— µF"
+                            TextColor="White"
+                            FontSize="18"
+                            LineBreakMode="WordWrap" />
+
+                        <!-- EN: Calculation explanation -->
+                        <!-- TR: Hesaplama açıklaması -->
+                        <Label
+                            x:Name="BreakdownLabel"
+                            Margin="0,5,0,0"
+                            Text="Kapasitör kodunu girerek hesaplama yapabilirsiniz."
+                            TextColor="#8998A5"
+                            FontSize="13"
+                            LineBreakMode="WordWrap" />
+
+                    </VerticalStackLayout>
+
+                </Border>
+
+            </VerticalStackLayout>
+
+        </ScrollView>
+
+    </Grid>
+
+</ContentPage>

@@ -1,0 +1,694 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="PCBToolkit.Views.ThtPage"
+    Shell.NavBarIsVisible="False"
+    BackgroundColor="#0B0F14">
+
+    <!-- EN: Main page layout -->
+    <!-- TR: Ana sayfa düzeni -->
+    <Grid RowDefinitions="100,*">
+
+        <!-- EN: THT page header area -->
+        <!-- TR: THT sayfası üst başlık alanı -->
+        <Grid
+            Grid.Row="0"
+            HeightRequest="100"
+            HorizontalOptions="Fill"
+            VerticalOptions="Fill">
+
+            <!-- EN: Header background image -->
+            <!-- TR: Header arka plan görseli -->
+            <Image
+                Source="tht_header.png"
+                Aspect="AspectFill"
+                HorizontalOptions="Fill"
+                VerticalOptions="Fill"
+                InputTransparent="True" />
+
+            <!-- EN: Dark overlay for text readability -->
+            <!-- TR: Yazı okunabilirliği için koyu katman -->
+            <BoxView
+                BackgroundColor="#650B0F14"
+                HorizontalOptions="Fill"
+                VerticalOptions="Fill"
+                InputTransparent="True" />
+
+            <!-- EN: Header content -->
+            <!-- TR: Header içeriği -->
+            <Grid
+                Padding="18,12,18,12"
+                ColumnDefinitions="*,Auto"
+                ColumnSpacing="16">
+
+                <!-- EN: Right-aligned THT title -->
+                <!-- TR: Sağa hizalanmış THT başlığı -->
+                <VerticalStackLayout
+                    Grid.Column="0"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Fill"
+                    Spacing="1">
+
+                    <Label
+                        Text="THT Araçları"
+                        TextColor="White"
+                        FontSize="24"
+                        FontAttributes="Bold"
+                        HorizontalTextAlignment="End"
+                        LineBreakMode="TailTruncation"
+                        MaxLines="1" />
+
+                    <Label
+                        Text="Through-Hole Technology"
+                        TextColor="#A0ADB7"
+                        FontSize="11"
+                        HorizontalTextAlignment="End"
+                        LineBreakMode="TailTruncation"
+                        MaxLines="1" />
+
+                </VerticalStackLayout>
+
+                <!-- EN: Back navigation button -->
+                <!-- TR: Geri dönüş butonu -->
+                <Border
+                    Grid.Column="1"
+                    WidthRequest="44"
+                    HeightRequest="44"
+                    BackgroundColor="#B5101820"
+                    Stroke="#FF8A3D"
+                    StrokeThickness="2"
+                    StrokeShape="RoundRectangle 14"
+                    HorizontalOptions="End"
+                    VerticalOptions="Center">
+
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnBackTapped" />
+                    </Border.GestureRecognizers>
+
+                    <Grid
+                        WidthRequest="44"
+                        HeightRequest="44"
+                        InputTransparent="True">
+
+                        <!-- EN: Geometric right-facing back arrow -->
+                        <!-- TR: Sağa bakan geometrik geri oku -->
+                        <Path
+                            Data="M 8,9 L 15,16 L 8,23"
+                            Stroke="#FF8A3D"
+                            StrokeThickness="3"
+                            StrokeLineCap="Round"
+                            StrokeLineJoin="Round"
+                            WidthRequest="23"
+                            HeightRequest="32"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            InputTransparent="True" />
+
+                    </Grid>
+
+                </Border>
+
+            </Grid>
+
+            <!-- EN: Header bottom divider -->
+            <!-- TR: Header alt ayırıcı -->
+            <BoxView
+                HeightRequest="1"
+                BackgroundColor="#6A3C21"
+                HorizontalOptions="Fill"
+                VerticalOptions="End"
+                InputTransparent="True" />
+
+        </Grid>
+
+        <!-- EN: Scrollable main content -->
+        <!-- TR: Kaydırılabilir ana içerik -->
+        <ScrollView
+            Grid.Row="1"
+            HorizontalScrollBarVisibility="Never"
+            VerticalScrollBarVisibility="Default">
+
+            <VerticalStackLayout
+                Padding="18,18,18,30"
+                Spacing="15"
+                HorizontalOptions="Fill">
+
+                <!-- EN: Calculation tools category -->
+                <!-- TR: Hesaplama araçları kategorisi -->
+                <HorizontalStackLayout
+                    Margin="0,4,3,0"
+                    Spacing="9"
+                    HorizontalOptions="End"
+                    VerticalOptions="Center">
+
+                    <Label
+                        Text="HESAPLAMA ARAÇLARI"
+                        TextColor="#FF8A3D"
+                        FontSize="11"
+                        FontAttributes="Bold"
+                        CharacterSpacing="1.5"
+                        VerticalTextAlignment="Center"
+                        LineBreakMode="TailTruncation"
+                        MaxLines="1" />
+
+                    <!-- EN: Calculator icon -->
+                    <!-- TR: Hesap makinesi ikonu -->
+                    <Grid
+                        WidthRequest="23"
+                        HeightRequest="25"
+                        VerticalOptions="Center">
+
+                        <Border
+                            BackgroundColor="#261810"
+                            Stroke="#FF8A3D"
+                            StrokeThickness="1.3"
+                            StrokeShape="RoundRectangle 4">
+
+                            <Grid
+                                Padding="4"
+                                RowDefinitions="6,*"
+                                RowSpacing="3">
+
+                                <Border
+                                    Grid.Row="0"
+                                    BackgroundColor="#4A2817"
+                                    StrokeThickness="0"
+                                    StrokeShape="RoundRectangle 1" />
+
+                                <Grid
+                                    Grid.Row="1"
+                                    RowDefinitions="*,*"
+                                    ColumnDefinitions="*,*"
+                                    RowSpacing="2"
+                                    ColumnSpacing="2">
+
+                                    <BoxView
+                                        Grid.Row="0"
+                                        Grid.Column="0"
+                                        BackgroundColor="#FF8A3D"
+                                        CornerRadius="1" />
+
+                                    <BoxView
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        BackgroundColor="#FF8A3D"
+                                        CornerRadius="1" />
+
+                                    <BoxView
+                                        Grid.Row="1"
+                                        Grid.Column="0"
+                                        BackgroundColor="#FF8A3D"
+                                        CornerRadius="1" />
+
+                                    <BoxView
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        BackgroundColor="#FF8A3D"
+                                        CornerRadius="1" />
+
+                                </Grid>
+
+                            </Grid>
+
+                        </Border>
+
+                    </Grid>
+
+                </HorizontalStackLayout>
+
+                <!-- EN: Resistor color code tool -->
+                <!-- TR: Direnç renk kodu aracı -->
+                <Border
+                    x:Name="ResistorColorCard"
+                    HeightRequest="112"
+                    BackgroundColor="#101820"
+                    Stroke="#623A22"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 18"
+                    HorizontalOptions="Fill">
+
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnResistorColorTapped" />
+                    </Border.GestureRecognizers>
+
+                    <Grid>
+
+                        <!-- EN: Card background image -->
+                        <!-- TR: Kart arka plan görseli -->
+                        <Image
+                            Source="tht_resistor_color.png"
+                            Aspect="AspectFill"
+                            HorizontalOptions="Fill"
+                            VerticalOptions="Fill"
+                            InputTransparent="True" />
+
+                        <!-- EN: Dark overlay for text readability -->
+                        <!-- TR: Metin okunabilirliği için koyu katman -->
+                        <BoxView
+                            BackgroundColor="#99101820"
+                            HorizontalOptions="Fill"
+                            VerticalOptions="Fill"
+                            InputTransparent="True" />
+
+                        <Grid
+                            Padding="18,16"
+                            ColumnDefinitions="Auto,*"
+                            ColumnSpacing="12">
+
+                            <!-- EN: Left-facing navigation arrow -->
+                            <!-- TR: Sola bakan geçiş oku -->
+                            <Label
+                                Grid.Column="0"
+                                Text="‹"
+                                TextColor="#FF8A3D"
+                                FontSize="34"
+                                FontAttributes="Bold"
+                                VerticalOptions="Center"
+                                HorizontalOptions="Center"
+                                InputTransparent="True" />
+
+                            <!-- EN: Right-aligned card content -->
+                            <!-- TR: Sağa hizalanmış kart içeriği -->
+                            <VerticalStackLayout
+                                Grid.Column="1"
+                                VerticalOptions="Center"
+                                HorizontalOptions="Fill"
+                                Spacing="5">
+
+                                <Label
+                                    Text="Direnç Renk Kodu"
+                                    TextColor="White"
+                                    FontSize="17"
+                                    FontAttributes="Bold"
+                                    HorizontalTextAlignment="End"
+                                    LineBreakMode="TailTruncation"
+                                    MaxLines="1" />
+
+                                <Label
+                                    Text="4 / 5 / 6 bant direnç hesaplama"
+                                    TextColor="#A0ADB7"
+                                    FontSize="11"
+                                    HorizontalTextAlignment="End"
+                                    LineBreakMode="TailTruncation"
+                                    MaxLines="1" />
+
+                                <Label
+                                    Text="Kahverengi · Siyah · Kırmızı → 1 kΩ"
+                                    TextColor="#FF8A3D"
+                                    FontSize="13"
+                                    FontAttributes="Bold"
+                                    HorizontalTextAlignment="End"
+                                    LineBreakMode="TailTruncation"
+                                    MaxLines="1" />
+
+                            </VerticalStackLayout>
+
+                        </Grid>
+
+                    </Grid>
+
+                </Border>
+
+                <!-- EN: LED series resistor tool -->
+                <!-- TR: LED seri direnç aracı -->
+                <Border
+                    x:Name="LedResistorCard"
+                    HeightRequest="112"
+                    BackgroundColor="#101820"
+                    Stroke="#623A22"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 18"
+                    HorizontalOptions="Fill">
+
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnLedResistorTapped" />
+                    </Border.GestureRecognizers>
+
+                    <Grid>
+
+                        <!-- EN: Card background image -->
+                        <!-- TR: Kart arka plan görseli -->
+                        <Image
+                            Source="tht_led_resistor.png"
+                            Aspect="AspectFill"
+                            HorizontalOptions="Fill"
+                            VerticalOptions="Fill"
+                            InputTransparent="True" />
+
+                        <!-- EN: Dark overlay for text readability -->
+                        <!-- TR: Metin okunabilirliği için koyu katman -->
+                        <BoxView
+                            BackgroundColor="#99101820"
+                            HorizontalOptions="Fill"
+                            VerticalOptions="Fill"
+                            InputTransparent="True" />
+
+                        <Grid
+                            Padding="18,16"
+                            ColumnDefinitions="Auto,*"
+                            ColumnSpacing="12">
+
+                            <!-- EN: Left-facing navigation arrow -->
+                            <!-- TR: Sola bakan geçiş oku -->
+                            <Label
+                                Grid.Column="0"
+                                Text="‹"
+                                TextColor="#FF8A3D"
+                                FontSize="34"
+                                FontAttributes="Bold"
+                                VerticalOptions="Center"
+                                HorizontalOptions="Center"
+                                InputTransparent="True" />
+
+                            <!-- EN: Right-aligned card content -->
+                            <!-- TR: Sağa hizalanmış kart içeriği -->
+                            <VerticalStackLayout
+                                Grid.Column="1"
+                                VerticalOptions="Center"
+                                HorizontalOptions="Fill"
+                                Spacing="5">
+
+                                <Label
+                                    Text="LED Seri Direnç"
+                                    TextColor="White"
+                                    FontSize="17"
+                                    FontAttributes="Bold"
+                                    HorizontalTextAlignment="End"
+                                    LineBreakMode="TailTruncation"
+                                    MaxLines="1" />
+
+                                <Label
+                                    Text="LED için gerekli seri direnci hesapla"
+                                    TextColor="#A0ADB7"
+                                    FontSize="11"
+                                    HorizontalTextAlignment="End"
+                                    LineBreakMode="TailTruncation"
+                                    MaxLines="1" />
+
+                                <Label
+                                    Text="5 V · 2 V · 20 mA → 150 Ω"
+                                    TextColor="#FF8A3D"
+                                    FontSize="13"
+                                    FontAttributes="Bold"
+                                    HorizontalTextAlignment="End"
+                                    LineBreakMode="TailTruncation"
+                                    MaxLines="1" />
+
+                            </VerticalStackLayout>
+
+                        </Grid>
+
+                    </Grid>
+
+                </Border>
+
+                <!-- EN: Package tools category -->
+                <!-- TR: Paket araçları kategorisi -->
+                <HorizontalStackLayout
+                    Margin="0,9,3,0"
+                    Spacing="9"
+                    HorizontalOptions="End"
+                    VerticalOptions="Center">
+
+                    <Label
+                        Text="PAKET ARAÇLARI"
+                        TextColor="#FF8A3D"
+                        FontSize="11"
+                        FontAttributes="Bold"
+                        CharacterSpacing="1.5"
+                        VerticalTextAlignment="Center"
+                        LineBreakMode="TailTruncation"
+                        MaxLines="1" />
+
+                    <!-- EN: Microchip icon -->
+                    <!-- TR: Mikroçip ikonu -->
+                    <Grid
+                        WidthRequest="26"
+                        HeightRequest="23"
+                        ColumnDefinitions="4,18,4"
+                        RowDefinitions="*,*,*"
+                        VerticalOptions="Center">
+
+                        <BoxView
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            HeightRequest="2"
+                            BackgroundColor="#FF8A3D"
+                            VerticalOptions="Center" />
+
+                        <BoxView
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            HeightRequest="2"
+                            BackgroundColor="#FF8A3D"
+                            VerticalOptions="Center" />
+
+                        <BoxView
+                            Grid.Row="2"
+                            Grid.Column="0"
+                            HeightRequest="2"
+                            BackgroundColor="#FF8A3D"
+                            VerticalOptions="Center" />
+
+                        <Border
+                            Grid.RowSpan="3"
+                            Grid.Column="1"
+                            BackgroundColor="#261810"
+                            Stroke="#FF8A3D"
+                            StrokeThickness="1.3"
+                            StrokeShape="RoundRectangle 3">
+
+                            <BoxView
+                                WidthRequest="4"
+                                HeightRequest="4"
+                                BackgroundColor="#FF8A3D"
+                                CornerRadius="2"
+                                HorizontalOptions="Start"
+                                VerticalOptions="Start"
+                                Margin="3" />
+
+                        </Border>
+
+                        <BoxView
+                            Grid.Row="0"
+                            Grid.Column="2"
+                            HeightRequest="2"
+                            BackgroundColor="#FF8A3D"
+                            VerticalOptions="Center" />
+
+                        <BoxView
+                            Grid.Row="1"
+                            Grid.Column="2"
+                            HeightRequest="2"
+                            BackgroundColor="#FF8A3D"
+                            VerticalOptions="Center" />
+
+                        <BoxView
+                            Grid.Row="2"
+                            Grid.Column="2"
+                            HeightRequest="2"
+                            BackgroundColor="#FF8A3D"
+                            VerticalOptions="Center" />
+
+                    </Grid>
+
+                </HorizontalStackLayout>
+
+                <!-- EN: Package finder tool -->
+                <!-- TR: Paket bulucu aracı -->
+                <Border
+                    x:Name="PackageFinderCard"
+                    HeightRequest="112"
+                    BackgroundColor="#101820"
+                    Stroke="#623A22"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 18"
+                    HorizontalOptions="Fill">
+
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnPackageFinderTapped" />
+                    </Border.GestureRecognizers>
+
+                    <Grid>
+
+                        <!-- EN: Card background image -->
+                        <!-- TR: Kart arka plan görseli -->
+                        <Image
+                            Source="tht_package_finder.png"
+                            Aspect="AspectFill"
+                            HorizontalOptions="Fill"
+                            VerticalOptions="Fill"
+                            InputTransparent="True" />
+
+                        <!-- EN: Dark overlay for text readability -->
+                        <!-- TR: Metin okunabilirliği için koyu katman -->
+                        <BoxView
+                            BackgroundColor="#99101820"
+                            HorizontalOptions="Fill"
+                            VerticalOptions="Fill"
+                            InputTransparent="True" />
+
+                        <Grid
+                            Padding="18,16"
+                            ColumnDefinitions="Auto,*"
+                            ColumnSpacing="12">
+
+                            <!-- EN: Left-facing navigation arrow -->
+                            <!-- TR: Sola bakan geçiş oku -->
+                            <Label
+                                Grid.Column="0"
+                                Text="‹"
+                                TextColor="#FF8A3D"
+                                FontSize="34"
+                                FontAttributes="Bold"
+                                VerticalOptions="Center"
+                                HorizontalOptions="Center"
+                                InputTransparent="True" />
+
+                            <!-- EN: Right-aligned card content -->
+                            <!-- TR: Sağa hizalanmış kart içeriği -->
+                            <VerticalStackLayout
+                                Grid.Column="1"
+                                VerticalOptions="Center"
+                                HorizontalOptions="Fill"
+                                Spacing="5">
+
+                                <Label
+                                    Text="Paket Bulucu"
+                                    TextColor="White"
+                                    FontSize="17"
+                                    FontAttributes="Bold"
+                                    HorizontalTextAlignment="End"
+                                    LineBreakMode="TailTruncation"
+                                    MaxLines="1" />
+
+                                <Label
+                                    Text="Axial · Radial · DIP · TO"
+                                    TextColor="#A0ADB7"
+                                    FontSize="11"
+                                    HorizontalTextAlignment="End"
+                                    LineBreakMode="TailTruncation"
+                                    MaxLines="1" />
+
+                                <Label
+                                    Text="Komponent ve paket türleri"
+                                    TextColor="#FF8A3D"
+                                    FontSize="13"
+                                    HorizontalTextAlignment="End"
+                                    LineBreakMode="TailTruncation"
+                                    MaxLines="1" />
+
+                            </VerticalStackLayout>
+
+                        </Grid>
+
+                    </Grid>
+
+                </Border>
+
+                <!-- EN: Package reference tool -->
+                <!-- TR: Paket referans aracı -->
+                <Border
+                    x:Name="PackageReferenceCard"
+                    HeightRequest="112"
+                    BackgroundColor="#101820"
+                    Stroke="#623A22"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 18"
+                    HorizontalOptions="Fill">
+
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnPackageReferenceTapped" />
+                    </Border.GestureRecognizers>
+
+                    <Grid>
+
+                        <!-- EN: Card background image -->
+                        <!-- TR: Kart arka plan görseli -->
+                        <Image
+                            Source="tht_package_reference.png"
+                            Aspect="AspectFill"
+                            HorizontalOptions="Fill"
+                            VerticalOptions="Fill"
+                            InputTransparent="True" />
+
+                        <!-- EN: Dark overlay for text readability -->
+                        <!-- TR: Metin okunabilirliği için koyu katman -->
+                        <BoxView
+                            BackgroundColor="#99101820"
+                            HorizontalOptions="Fill"
+                            VerticalOptions="Fill"
+                            InputTransparent="True" />
+
+                        <Grid
+                            Padding="18,16"
+                            ColumnDefinitions="Auto,*"
+                            ColumnSpacing="12">
+
+                            <!-- EN: Left-facing navigation arrow -->
+                            <!-- TR: Sola bakan geçiş oku -->
+                            <Label
+                                Grid.Column="0"
+                                Text="‹"
+                                TextColor="#FF8A3D"
+                                FontSize="34"
+                                FontAttributes="Bold"
+                                VerticalOptions="Center"
+                                HorizontalOptions="Center"
+                                InputTransparent="True" />
+
+                            <!-- EN: Right-aligned card content -->
+                            <!-- TR: Sağa hizalanmış kart içeriği -->
+                            <VerticalStackLayout
+                                Grid.Column="1"
+                                VerticalOptions="Center"
+                                HorizontalOptions="Fill"
+                                Spacing="5">
+
+                                <Label
+                                    Text="Paket Referansı"
+                                    TextColor="White"
+                                    FontSize="17"
+                                    FontAttributes="Bold"
+                                    HorizontalTextAlignment="End"
+                                    LineBreakMode="TailTruncation"
+                                    MaxLines="1" />
+
+                                <Label
+                                    Text="DIP · TO-92 · TO-220 · Axial"
+                                    TextColor="#A0ADB7"
+                                    FontSize="11"
+                                    HorizontalTextAlignment="End"
+                                    LineBreakMode="TailTruncation"
+                                    MaxLines="1" />
+
+                                <Label
+                                    Text="Paket özellikleri ve boyut referansları"
+                                    TextColor="#FF8A3D"
+                                    FontSize="13"
+                                    HorizontalTextAlignment="End"
+                                    LineBreakMode="TailTruncation"
+                                    MaxLines="1" />
+
+                            </VerticalStackLayout>
+
+                        </Grid>
+
+                    </Grid>
+
+                </Border>
+
+            </VerticalStackLayout>
+
+        </ScrollView>
+
+    </Grid>
+
+</ContentPage>
